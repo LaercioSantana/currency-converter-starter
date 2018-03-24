@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, KeyboardAvoidingView } from 'react-native';
 
 import { Container } from '../components/Container/index';
 import { Logo } from '../components/Logo/index';
@@ -40,26 +40,28 @@ class Home extends Component {
       <Container>
         <StatusBar translucent={false} barStyle="light-content" />
         <Header onPress={this.handlePressOption} />
-        <Logo />
-        <InputWithButton
-          buttonText={TEMP_BASE_CURRENCY}
-          defaultValue={TEMP_BASE_PRICE}
-          keyboardType="numeric"
-          onPress={this.handlePressBaseCurrency}
-        />
-        <InputWithButton
-          buttonText={TEMP_QUOTE_CURRENCY}
-          editable={false}
-          defaultValue={TEMP_QUOTE_PRICE}
-          onPress={this.handlePressQuoteCurrency}
-        />
-        <LastConverted
-          base={TEMP_BASE_CURRENCY}
-          quote={TEMP_QUOTE_CURRENCY}
-          date={TEMP_LAST_CONVERTED}
-          conversionRate={TEMP_CONVERSION_RATE}
-        />
-        <ClearButton text="Reverse Currencies" onPress={this.handleSwapCurrency} />
+        <KeyboardAvoidingView behavior="padding">
+          <Logo />
+          <InputWithButton
+            buttonText={TEMP_BASE_CURRENCY}
+            defaultValue={TEMP_BASE_PRICE}
+            keyboardType="numeric"
+            onPress={this.handlePressBaseCurrency}
+          />
+          <InputWithButton
+            buttonText={TEMP_QUOTE_CURRENCY}
+            editable={false}
+            defaultValue={TEMP_QUOTE_PRICE}
+            onPress={this.handlePressQuoteCurrency}
+          />
+          <LastConverted
+            base={TEMP_BASE_CURRENCY}
+            quote={TEMP_QUOTE_CURRENCY}
+            date={TEMP_LAST_CONVERTED}
+            conversionRate={TEMP_CONVERSION_RATE}
+          />
+          <ClearButton text="Reverse Currencies" onPress={this.handleSwapCurrency} />
+        </KeyboardAvoidingView>
       </Container>
     );
   }
