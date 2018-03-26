@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, Keyboard, Animated, Platform } from 'react-native';
 
 import styles from './styles';
@@ -6,6 +7,10 @@ import styles from './styles';
 const ANIMATION_DURATION = Platform.OS === 'android' ? 100 : 250;
 
 class Logo extends Component {
+  static propTypes = {
+    tintColor: PropTypes.string,
+  }
+
   constructor(props) {
     super(props);
     this.logoBackgroundSize = new Animated.Value(styles.$largeBackgroundSize);
@@ -65,6 +70,7 @@ class Logo extends Component {
     const logoStyles = [
       styles.logo,
       { width: this.logoSize, height: this.logoBackgroundSize },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null,
     ];
 
     return (
